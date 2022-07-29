@@ -1,9 +1,12 @@
 package pages;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -36,18 +39,13 @@ public class SearchPage {
     }
 
     private SearchPage checkDownloadHasPassed(){
-        $(WAITING_PLATE).shouldBe(visible).shouldNotBe(visible);
+        $(WAITING_PLATE).shouldBe(visible, Duration.ofSeconds(20)).shouldBe(Condition.not(visible), Duration.ofSeconds(20));
         return this;
     }
 
     public SearchPage selectMap(){
-        $(MAP_BUTTON).click();
-        loadingMapMessage();
+        $(MAP_BUTTON).scrollTo().click();
         return this;
     }
 
-    private SearchPage loadingMapMessage(){
-        $(LOADING_MAP_MESSAGE).shouldBe(visible).shouldNotBe(visible);
-        return this;
-    }
 }
