@@ -21,6 +21,7 @@ public class ChooseStarFilterTest extends BaseTest {
     public void chooseFiveStarFilterInSearchTest() {
         HomePage homePage = new HomePage();
         homePage.openPage()
+                .chooseRussianLanguage()
                 .chooseACity(nameOfCity)
                 .selectDates(dateStart, dateFinish)
                 .selectNumberOfPersonAndRooms(countAdults, countChildren, countRooms)
@@ -33,14 +34,15 @@ public class ChooseStarFilterTest extends BaseTest {
     public void chooseFiveStarFilterInMapTest() {
         HomePage homePage = new HomePage();
         homePage.openPage()
+                .chooseRussianLanguage()
                 .chooseACity(nameOfCity)
                 .selectDates(dateStart, dateFinish)
                 .selectNumberOfPersonAndRooms(countAdults, countChildren, countRooms)
                 .search();
         SearchPage searchPage = new SearchPage();
-        searchPage.chooseCountOfStars(countOfStar)
-                .selectMap();
+        searchPage.selectMap();
         MapPage mapPage = new MapPage();
-        mapPage.chooseCountOfStars(countOfStar);
+        mapPage.chooseCountOfStars(countOfStar)
+                .checkNumberOfStars(countOfStar);
     }
 }
